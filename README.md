@@ -30,9 +30,17 @@ Utilize IaC solutions such as ansible and terraform to fully automate the deploy
 
 
 
-# Usage
+## Usage
 pipenv install 
 python app.py
 
 ## Access on:
 [localhost:8000]
+
+## Steps:
+Docker image build:
+docker build --tag chuck-docker .
+
+Docker Container build:
+docker run -p 5000:5000 chuck-docker
+
