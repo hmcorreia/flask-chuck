@@ -1,34 +1,21 @@
 version: '1'
 services:
-  flask-app:
-    image: hmcorreia1977/flask-chuck:version1
-    environment:
-      - DB_USER=user
-      - DB_PWD=pass
-      - DB_SERVER=mysql
-      - DB_NAME=my-app-db
+  web:
+    build: .
     ports:
-    - 8000:5000
-    container_name: flask-chuck
-  mysql:
-    image: mysql
-    ports:
-      - 3306:3306
+      - "5000:5000"
+    depends_on:
+      - db
     environment:
-      - MYSQL_ROOT_PASSWORD=my-secret-pw
-      - MYSQL_DATABASE=my-app-db
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=pass
+      - DATABASE_URL=postgresql://postgres:password@db/myapp
     volumes:
-    - mysql-data:/var/lib/mysql
-    container_name: mysql
-  phpmyadmin:
-    image: phpmyadmin
+      - .:/app
+  db:
+    image: postgres
     environment:
-      PMA_HOST: mysql
-    ports:
-      - 8083:80
-    container_name: myadmin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=myapp
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 volumes:
-  mysql-data:
-    driver: local
+  postgres_data:
