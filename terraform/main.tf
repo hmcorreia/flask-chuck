@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = "eu-west-2"
 }
 
 variable vpc_cidr_block {}
@@ -134,7 +134,7 @@ resource "aws_instance" "myapp-server" {
       trigger = aws_instance.myapp-server.public_ip
     }
     provisioner "local-exec" {
-      working_dir = "/home/sonali-rajput/Projects/ansible"
+      working_dir = "."
       command = "ansible-playbook --inventory ${aws_instance.myapp-server.public_ip}, --private-key ${var.ssh_private_key} --user ec2-user  deploy-docker-newuser.yml"
     
   }
