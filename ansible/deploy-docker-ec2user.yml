@@ -40,7 +40,7 @@
   tasks:
     - name: copy docker compose
       copy:
-        src: /home/sonali-rajput/Projects/ansible/docker-compose.yml
+        src: docker-compose.yml
         dest: /home/ec2-user/docker-compose.yml
     - name: start container
       docker_compose:
