@@ -8,8 +8,8 @@ terraform {
   required_version = ">= 0.13"
 }
 
-resource "docker_image" "nginx" {
-  name = "nginx:latest"
+resource "flask-chuck" "version1" {
+  name = "version1"
 }
 
 resource "docker_container" "nginx" {
